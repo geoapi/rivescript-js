@@ -61,9 +61,8 @@ rs.loadDirectory("../brain").then(function() {
 			});
 		} else if (messageData.channel[0] === "D") {
 			// Direct message.
-			console.log(user);
+	//		console.log(user);
 		
-			  if (user !== "undefined") {	
 			  rs.reply(user.name, message).then(function(reply) {
 				channel = slack.getChannelGroupOrDMByName(user.name);
 				if (reply.length > 0) {
@@ -71,7 +70,7 @@ rs.loadDirectory("../brain").then(function() {
 				}
 				
 			})}
-		}
+
 	});
 }).catch(function(err) {
 	console.error(err);
