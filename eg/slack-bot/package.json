@@ -9,6 +9,7 @@
   "author": "Noah Petherbridge",
   "license": "MIT",
   "dependencies": {
+    "node-fetch": "^2.3.0",
     "slack-client": "~1.4.1"
   }
 }

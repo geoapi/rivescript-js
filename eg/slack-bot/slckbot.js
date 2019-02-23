@@ -7,7 +7,7 @@
 
 require("babel-polyfill");
 var config = require("./config"),
-	RiveScript = require("../../lib/rivescript"),
+	RiveScript = require("../../src/rivescript"),
 	Slack = require("slack-client");
 
 var slack = new Slack(config.token, true, true);
@@ -51,6 +51,7 @@ rs.loadDirectory("../brain").then(function() {
 			).trim();
 
 			// Get the bot's reply.
+			console.log(user);
 			rs.reply(user.name, message).then(function(reply) {
 				// Send it to the channel.
 				channel = slack.getChannelGroupOrDMByID(messageData.channel);
@@ -60,12 +61,16 @@ rs.loadDirectory("../brain").then(function() {
 			});
 		} else if (messageData.channel[0] === "D") {
 			// Direct message.
-			rs.reply(user.name, message).then(function(reply) {
+			console.log(user);
+		
+			  if (user !== "undefined") {	
+			  rs.reply(user.name, message).then(function(reply) {
 				channel = slack.getChannelGroupOrDMByName(user.name);
 				if (reply.length > 0) {
 					channel.send(reply);
 				}
-			});
+				
+			})}
 		}
 	});
 }).catch(function(err) {
